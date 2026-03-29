@@ -73,8 +73,8 @@ function onResults(results) {
     });
 
     // Draw landmarks
-    drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#ff00ff', lineWidth: 4});
-    drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#39ff14', lineWidth: 2, radius: 4});
+    drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#FF0000', lineWidth: 4});
+    drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#00FF00', lineWidth: 2, radius: 4});
 
     // Calculate speed if game is active
     if (isPlaying) {
@@ -151,12 +151,17 @@ function gameLoop(now) {
   // Distance display
   distanceDisplay.innerText = Math.floor(playerDistance / 100);
 
-  // Animate player bobbing
+  // Animate player and predator
   if (currentSpeed > 50) {
     playerElement.classList.add('player-run');
-    legsElement.classList.add('running-legs');
   } else {
     playerElement.classList.remove('player-run');
+  }
+
+  // The JOB never stops running!
+  if (isPlaying && !gameOver) {
+    legsElement.classList.add('running-legs');
+  } else {
     legsElement.classList.remove('running-legs');
   }
 
@@ -165,6 +170,8 @@ function gameLoop(now) {
     // Escaped failed, JOB caught you!
     isPlaying = false;
     gameOver = true;
+    legsElement.classList.remove('running-legs');
+    playerElement.classList.remove('player-run');
     document.getElementById('game-over').classList.remove('hidden');
     
     let finalDist = Math.floor(playerDistance / 100);
@@ -194,6 +201,12 @@ document.getElementById('start-btn').addEventListener('click', () => {
 document.getElementById('restart-btn').addEventListener('click', () => {
   document.getElementById('game-over').classList.add('hidden');
   document.getElementById('ui-overlay').classList.remove('hidden');
+  
+  // Restart marquee if the browser paused it while display:none
+  const instructionMarquee = document.getElementById('instruction');
+  if (instructionMarquee && instructionMarquee.start) {
+    instructionMarquee.start();
+  }
   
   // Reset initial visuals behind the UI
   playerDistance = 0;
