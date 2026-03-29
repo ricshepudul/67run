@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Impact", "Arial Black", sans-serif;
-  background-color: var(--neon-green);
+  background-color: #00FF00;
   overflow: hidden;
   user-select: none;
 }
@@ -22,10 +22,10 @@ body {
   /* Hideous background pattern */
   background:
     repeating-linear-gradient(45deg,
-      var(--neon-pink),
-      var(--neon-pink) 20px,
-      var(--neon-yellow) 20px,
-      var(--neon-yellow) 40px);
+      #FF0000 20px,
+      #0000FF 20px,
+      #FF0000 20px,
+      #0000FF 40px);
   background-size: 200vw 200vw;
 }
 
@@ -38,9 +38,9 @@ body {
     repeating-linear-gradient(90deg,
       #000,
       #000 50px,
-      var(--neon-cyan) 50px,
-      var(--neon-cyan) 100px);
-  border-top: 10px solid var(--neon-orange);
+      #00FF00 50px,
+      #00FF00 100px);
+  border-top: 10px solid #000000;
 }
 
 #score-board {
@@ -58,7 +58,7 @@ body {
   top: 20px;
   right: 20px;
   font-size: 3rem;
-  color: var(--neon-yellow);
+  color: #FFFFFF;
   text-shadow: 4px 4px 0 #000;
   z-index: 100;
 }
@@ -70,8 +70,8 @@ body {
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.9);
   padding: 40px;
-  border: 10px solid var(--neon-pink);
-  box-shadow: 15px 15px 0 var(--neon-yellow);
+  border: 10px solid red;
+  box-shadow: 15px 15px 0 blue;
   text-align: center;
   z-index: 200;
 }
@@ -81,9 +81,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--neon-cyan);
+  background: blue;
   padding: 40px;
-  border: 15px dashed yellow;
+  border: 15px dashed black;
   color: red;
   text-align: center;
   z-index: 300;
@@ -102,7 +102,7 @@ button {
   font-family: inherit;
   font-size: 2rem;
   padding: 10px 30px;
-  background: var(--neon-orange);
+  background: red;
   color: white;
   border: 5px solid black;
   cursor: pointer;
@@ -110,8 +110,8 @@ button {
 }
 
 button:hover {
-  background: var(--neon-pink);
-  color: var(--neon-yellow);
+  background: red;
+  color: green;
 }
 
 /* --- THE PLAYER --- */
