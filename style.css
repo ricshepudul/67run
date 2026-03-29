@@ -1,0 +1,236 @@
+:root {
+  --neon-pink: #ff00ff;
+  --neon-green: #39ff14;
+  --neon-yellow: #ccff00;
+  --neon-cyan: #00ffff;
+  --neon-orange: #ff5e00;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Impact", "Arial Black", sans-serif;
+  background-color: var(--neon-green);
+  overflow: hidden;
+  user-select: none;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  /* Hideous background pattern */
+  background:
+    repeating-linear-gradient(45deg,
+      var(--neon-pink),
+      var(--neon-pink) 20px,
+      var(--neon-yellow) 20px,
+      var(--neon-yellow) 40px);
+  background-size: 200vw 200vw;
+}
+
+#track {
+  position: absolute;
+  bottom: 0;
+  width: 200vw;
+  height: 150px;
+  background:
+    repeating-linear-gradient(90deg,
+      #000,
+      #000 50px,
+      var(--neon-cyan) 50px,
+      var(--neon-cyan) 100px);
+  border-top: 10px solid var(--neon-orange);
+}
+
+#score-board {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 4px 4px 0 #000;
+  z-index: 100;
+}
+
+#high-score-board {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 3rem;
+  color: var(--neon-yellow);
+  text-shadow: 4px 4px 0 #000;
+  z-index: 100;
+}
+
+#ui-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border: 10px solid var(--neon-pink);
+  box-shadow: 15px 15px 0 var(--neon-yellow);
+  text-align: center;
+  z-index: 200;
+}
+
+#game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--neon-cyan);
+  padding: 40px;
+  border: 15px dashed yellow;
+  color: red;
+  text-align: center;
+  z-index: 300;
+  box-shadow: 20px 20px 0 black;
+}
+
+h1 {
+  font-size: 4rem;
+  margin: 0 0 20px 0;
+  color: red;
+  text-shadow: 3px 3px 0 #000;
+  text-transform: uppercase;
+}
+
+button {
+  font-family: inherit;
+  font-size: 2rem;
+  padding: 10px 30px;
+  background: var(--neon-orange);
+  color: white;
+  border: 5px solid black;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: var(--neon-pink);
+  color: var(--neon-yellow);
+}
+
+/* --- THE PLAYER --- */
+#player {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  /* Center of screen */
+  transform: translateX(-50%);
+  height: 150px;
+  z-index: 50;
+  /* Slightly bob up and down when running */
+  transition: transform 0.1s;
+}
+
+.player-run {
+  animation: run-bob 0.2s infinite alternate;
+}
+
+@keyframes run-bob {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+/* --- THE PREDATOR (JOB) --- */
+#predator {
+  position: absolute;
+  bottom: 150px;
+  /* Will be positioned dynamically via JS */
+  font-size: 8rem;
+  font-weight: 900;
+  color: #ff0000;
+  text-shadow:
+    -3px -3px 0 #fff,
+    3px -3px 0 #fff,
+    -3px 3px 0 #fff,
+    3px 3px 0 #fff,
+    8px 8px 0 black;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cartoon Legs */
+.legs {
+  display: flex;
+  gap: 15px;
+  margin-top: -10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.leg {
+  width: 12px;
+  height: 40px;
+  background: black;
+  border-radius: 6px;
+  position: relative;
+}
+
+.leg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  width: 30px;
+  height: 15px;
+  background: black;
+  border-radius: 10px 10px 0 0;
+}
+
+.running-legs .left-leg {
+  animation: kick 0.3s infinite alternate;
+}
+
+.running-legs .right-leg {
+  animation: kick 0.3s infinite alternate-reverse;
+}
+
+@keyframes kick {
+  0% {
+    transform: rotate(-30deg) translateY(-5px);
+  }
+
+  100% {
+    transform: rotate(30deg) translateY(5px);
+  }
+}
+
+/* Webcam feed */
+#tracker-container {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 320px;
+  height: 240px;
+  border: 5px solid var(--neon-pink);
+  background: #000;
+  z-index: 100;
+  overflow: hidden;
+}
+
+#debug-info {
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--neon-green);
+  font-family: monospace;
+  font-size: 1.2rem;
+  padding: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}

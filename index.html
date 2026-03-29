@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6 7 from the JOB</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MediaPipe Pose -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- Game UI -->
+  <div id="game-container">
+
+    <div id="score-board">Distance: <span id="distance">0</span>m</div>
+    <div id="high-score-board">High Score: <span id="high-score">0</span>m</div>
+
+    <!-- The Track -->
+    <div id="track"></div>
+
+    <!-- The Predator (JOB) -->
+    <div id="predator">JOB
+      <div class="legs">
+        <div class="leg left-leg"></div>
+        <div class="leg right-leg"></div>
+      </div>
+    </div>
+
+    <!-- The Player -->
+    <img id="player" src="runner.png" alt="Running Character">
+
+    <div id="ui-overlay">
+      <h1 id="title">ESCAPE THE JOB!</h1>
+      <p id="instruction">6 7 as fast as you can to run! The JOB speeds up over time.</p>
+      <button id="start-btn">Start 6 7 ing</button>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over" class="hidden">
+      <h1>YOU WERE HIRED!</h1>
+      <p>The JOB caught you.</p>
+      <p>Distance: <span id="final-distance"></span>m</p>
+      <button id="restart-btn">Try to escape again</button>
+    </div>
+
+  </div>
+
+  <!-- Debug / WebCam / Tracker View -->
+  <div id="tracker-container">
+    <video id="input_video" style="display: none;"></video>
+    <canvas id="output_canvas" width="320" height="240"></canvas>
+    <div id="debug-info">6 7 Speed: <span id="flap-speed-display">0</span></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
